@@ -3,12 +3,12 @@
 # 1) Two functions that finds the factorial of any number.
 #     One should use recursion, the other should just use for loop
 
-def findFactorialRecursive(number):
+def find_factorial_recursive(number):
     if number == 1 :
         return 1
-    return number * findFactorialRecursive(number-1)
+    return number * find_factorial_recursive(number-1)
 
-def findFactorialIterative(number):
+def find_factorial_iterative(number):
     answer = 1
     for i in range(2,number+1):
         answer *=i
@@ -17,15 +17,15 @@ def findFactorialIterative(number):
 # 2) Given a number N return the index value of the Fibonacci sequence, where the sequence is:
 #   0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144 ...
 #   the pattern of the sequence is that each value is the sum of the 2 previous values, that means that for N=5 → 2+3
-#   For example: fibonacciRecursive(6) should return 8
+#   For example: fibonacci_recursive(6) should return 8
 #   2 functions, one recirsive and one iterative
 
-def fibonacciRecursive(n):  #O(2^n)
+def fibonacci_recursive(n):  #O(2^n)
     if n < 2:
         return n
-    return fibonacciRecursive(n-1)+fibonacciRecursive(n-2)
+    return fibonacci_recursive(n-1)+fibonacci_recursive(n-2)
 
-def fibonacciIterative(n): #O(n)
+def fibonacci_iterative(n): #O(n)
     if n < 2:
         return n
     first = 0
@@ -40,18 +40,18 @@ def fibonacciIterative(n): #O(n)
 
 #3) Reverse String With Recursion
 
-def reverseStringRecursive(string):
+def reverse_string_recursive(string):
     if len(string) == 0:
         return ""
-    return string[-1]+reverseStringRecursive(string[0:-1])
+    return string[-1]+reverse_string_recursive(string[0:-1])
 
 
 def main():
-    print(findFactorialRecursive(5))
-    print(findFactorialIterative(5))
-    print(fibonacciRecursive(12))
-    print(fibonacciIterative(12))
-    print(reverseStringRecursive("Bradley"))
+    print(find_factorial_recursive(5))
+    print(find_factorial_iterative(5))
+    print(fibonacci_recursive(12))
+    print(fibonacci_iterative(12))
+    print(reverse_string_recursive("Bradley"))
 
 if __name__ == "__main__":
     main()
