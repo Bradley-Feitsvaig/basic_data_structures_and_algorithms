@@ -57,7 +57,25 @@ def merge_sort(arr):
     right = arr[len(arr)//2:len(arr)]
     return merge(merge_sort(left),merge_sort(right))
 
-
+def quick_sort(arr,left,right):
+    if right<=left:
+        return
+    pivot=partition(arr,left,right) #smaller than pivot will be on the left of it and the right will be on the right. returns the index of the pivot
+    quick_sort(arr,left,pivot-1)
+    quick_sort(arr,pivot,right)
+    
+def partition(arr,left,right):
+    pivot = right
+    for i in range(left,right):
+        while i<pivot and arr[i]>arr[pivot]:
+            temp=arr[pivot]
+            arr[pivot]=arr[i]
+            pivot-=1
+            arr[i]=arr[pivot]
+            arr[pivot]=temp
+        if pivot<=i:
+            break
+    return pivot
 
 def main():
     arr = [99,44,6,2,1,5,63,87,283,4,0]
@@ -69,6 +87,9 @@ def main():
     print(insertion_sort(insertion_arr))
     merge_sort_arr = arr.copy()
     print(merge_sort(merge_sort_arr))
+    quick_sort_arr = arr.copy()
+    quick_sort(quick_sort_arr,0,len(quick_sort_arr)-1)
+    print(quick_sort_arr)
 
 
 if __name__ == "__main__":
