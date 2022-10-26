@@ -48,6 +48,33 @@ class BinarySearchTree:
     def remove(self,value):
         pass
 
+    def bfs(self):  #Iterative
+        current_node = self.root
+        list = []
+        queue = []
+        queue.append(current_node)
+
+        while(len(queue)>0):
+            current_node=queue.pop(0)
+            list.append(current_node.value)
+            if current_node.left:
+                queue.append(current_node.left)
+            if current_node.right:
+                queue.append(current_node.right)
+        return list
+
+    def bfs_recursive(self,list,queue): #Recursive
+        if len(queue)==0:
+            return list
+        current_node = queue.pop(0)
+        list.append(current_node.value)
+        if current_node.left:
+            queue.append(current_node.left)
+        if current_node.right:
+            queue.append(current_node.right)
+        return self.bfs_recursive(list,queue)
+        
+
            
 def main():
     tree = BinarySearchTree()
@@ -74,6 +101,13 @@ def main():
         displayBinarySearchTree(n) #Display the subtree in case it find a node with wanted value
     else:
         print("False")
+
+    print("The tree in BFS order: " + str(tree.bfs()))
+
+    bfs_order = []
+    queue_for_bfs_recursive = [tree.root]
+    tree.bfs_recursive(bfs_order,queue_for_bfs_recursive)
+    print("The tree in BFS_recursive order: " + str(bfs_order))
 
 if __name__ == "__main__":
     main()
