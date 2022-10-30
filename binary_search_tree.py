@@ -73,8 +73,39 @@ class BinarySearchTree:
         if current_node.right:
             queue.append(current_node.right)
         return self.bfs_recursive(list,queue)
-        
+    
+    def dfs_preorder(self):
+        return self.traverse_pre_order(self.root,[])
 
+    def dfs_inorder(self):
+        return self.traverse_in_order(self.root,[])
+    
+    def dfs_postorder(self):
+        return self.traverse_post_order(self.root,[])
+        
+    def traverse_pre_order(self,node,list):
+        list.append(node.value)
+        if(node.left):
+            self.traverse_pre_order(node.left,list)
+        if(node.right):
+            self.traverse_pre_order(node.right,list)
+        return list
+    
+    def traverse_in_order(self,node,list):
+        if(node.left):
+            self.traverse_in_order(node.left,list)
+        list.append(node.value)
+        if(node.right):
+            self.traverse_in_order(node.right,list)
+        return list
+
+    def traverse_post_order(self,node,list):
+        if(node.left):
+            self.traverse_post_order(node.left,list)
+        if(node.right):
+            self.traverse_post_order(node.right,list)
+        list.append(node.value)
+        return list
            
 def main():
     tree = BinarySearchTree()
@@ -108,6 +139,15 @@ def main():
     queue_for_bfs_recursive = [tree.root]
     tree.bfs_recursive(bfs_order,queue_for_bfs_recursive)
     print("The tree in BFS_recursive order: " + str(bfs_order))
+
+    dfs_in_order_list = tree.dfs_inorder()
+    print("The tree in DFS_inorder: " + str(dfs_in_order_list))
+
+    dfs_pre_order_list = tree.dfs_preorder()
+    print("The tree in DFS_preorder: " + str(dfs_pre_order_list))
+
+    dfs_post_order_list = tree.dfs_postorder()
+    print("The tree in DFS_postorder: " + str(dfs_post_order_list))
 
 if __name__ == "__main__":
     main()
